@@ -3,11 +3,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="wpOceans">
+    <meta name="author" content="Genesaret Johnes">
+    <meta name="description" content="Just a brief page of my portfolio">
     <!-- Page Title -->
-    <link rel="shortcut icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="assets/images/preloader.png">
     <!-- Icon fonts -->
-    <title>Elito - Creative Portfolio HTML5 Template</title>
+    <title>Genesaret Johnes | Portfolio Web</title>
     <link href="assets/css/themify-icons.css" rel="stylesheet">
     <link href="assets/css/font-awesome.min.css" rel="stylesheet">
     <link href="assets/css/flaticon.css" rel="stylesheet">
@@ -27,5 +28,5 @@
     <link href="assets/css/odometer-theme-default.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="assets/sass/style.css" rel="stylesheet">
-    <?php echo (isset($css) ? $css   : '')?>
+    <?php echo (isset($css) ? $css   : '') ?>
 </head>
