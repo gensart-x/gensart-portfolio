@@ -10,7 +10,7 @@ $projects = [
     [
         'image'     => 'x1-billing.png',
         'repo'      => null,
-        'demo'      => 'https://github.com/gensart-x',
+        'demo'      => null,
         // 'client' = permintaan klien, 'personal' = hasil coba/personal
         'category'  => 'personal',
         'title'     => 'RT/RW Net Billing App',
