@@ -1,0 +1,12 @@
+// agents.php — raw AGENTS.md view
+
+// The page itself is intentionally UI-free: it prints AGENTS.md as plain text
+// inside a terminal-style <pre>, so all of its styling is inlined in agents.php
+// to keep the page self-contained. The rule below is the only piece that still
+// belongs to the site chrome.
+
+// The template's nav links are `text-transform: capitalize`, which renders
+// "AGENTS.md" as "AGENTS.Md". A filename should keep its own casing.
+.wpo-site-header #navbar > ul > li > a.nav-agents-link {
+    text-transform: none;
+}

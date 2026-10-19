@@ -2832,6 +2832,99 @@ img {
     display: none;
   }
 }
+
+/*-- header CV download button --*/
+.wpo-site-header .header-right .cv-download-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 22px;
+  border-radius: 40px;
+  background-color: #41b362;
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.4;
+  white-space: nowrap;
+  transition: background-color 0.25s ease;
+}
+.wpo-site-header .header-right .cv-download-btn i {
+  font-size: 14px;
+  line-height: 1;
+}
+.wpo-site-header .header-right .cv-download-btn:hover, .wpo-site-header .header-right .cv-download-btn:focus {
+  background-color: #359651;
+  color: #fff;
+}
+.wpo-site-header .header-right .cv-download-btn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+@media (max-width: 991px) {
+  .wpo-site-header .header-right {
+    right: 0;
+  }
+  .wpo-site-header .header-right .cv-download-btn {
+    gap: 5px;
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+  .wpo-site-header .header-right .cv-download-btn i {
+    font-size: 13px;
+  }
+}
+/*-- mobile header alignment --*/
+@media (max-width: 991px) {
+  .wpo-site-header .container > .row {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    flex-wrap: nowrap;
+  }
+  .wpo-site-header .header-menu-col,
+  .wpo-site-header .header-logo-col,
+  .wpo-site-header .header-nav-col,
+  .wpo-site-header .header-cv-col {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+  }
+  .wpo-site-header .header-menu-col {
+    flex: 1 1 0;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .wpo-site-header .header-nav-col {
+    flex: 0 0 0;
+    width: 0;
+  }
+  .wpo-site-header .header-logo-col {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .wpo-site-header .header-cv-col {
+    flex: 1 1 0;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .wpo-site-header .header-logo-col .navbar-header {
+    width: auto;
+  }
+  .wpo-site-header .header-logo-col .navbar-brand {
+    margin: 0;
+    padding: 0;
+  }
+  .wpo-site-header .header-logo-col .navbar-brand img {
+    margin: 0;
+  }
+}
+
 .wpo-header-style-1 .wpo-site-header,
 .wpo-header-style-2 .wpo-site-header {
   position: absolute;
@@ -3864,8 +3957,19 @@ img {
 }
 @media (max-width: 991px) {
   .wpo-site-footer .upper-contact-area,
-.wpo-site-footer-s2 .upper-contact-area {
-    display: none;
+  .wpo-site-footer-s2 .upper-contact-area {
+    position: static;
+    top: auto;
+    width: 100%;
+    z-index: 1;
+    scroll-margin-top: 100px;
+  }
+  .wpo-site-footer .upper-contact-area .container,
+  .wpo-site-footer-s2 .upper-contact-area .container {
+    width: 100%;
+    max-width: none;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 .wpo-site-footer .upper-contact-area .contact-grids,
@@ -3950,6 +4054,41 @@ img {
 .wpo-site-footer-s2 .upper-contact-area .contact-grids .send-message-btn .view-cart-btn:before {
   content: "\f10d";
   font-family: "Flaticon";
+}
+@media (max-width: 991px) {
+  .wpo-site-footer .upper-contact-area .contact-grids h3,
+  .wpo-site-footer-s2 .upper-contact-area .contact-grids h3 {
+    font-size: 18px;
+    line-height: 1.55;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0;
+  }
+}
+@media (max-width: 1200px) {
+  .wpo-site-footer .upper-contact-area .contact-grids,
+  .wpo-site-footer-s2 .upper-contact-area .contact-grids {
+    padding: 40px 24px 44px;
+  }
+  .wpo-site-footer .upper-contact-area .contact-grids .left-shape,
+  .wpo-site-footer-s2 .upper-contact-area .contact-grids .left-shape {
+    display: none;
+  }
+  .wpo-site-footer .upper-contact-area .contact-grids .row > [class*="col"],
+  .wpo-site-footer-s2 .upper-contact-area .contact-grids .row > [class*="col"] {
+    flex: 0 0 100%;
+    max-width: 100%;
+    width: 100%;
+  }
+  .wpo-site-footer .upper-contact-area .contact-grids .send-message-btn,
+  .wpo-site-footer-s2 .upper-contact-area .contact-grids .send-message-btn {
+    text-align: left;
+    margin-top: 22px;
+  }
+  .wpo-site-footer .upper-contact-area .contact-grids .send-message-btn .theme-btn,
+  .wpo-site-footer-s2 .upper-contact-area .contact-grids .send-message-btn .theme-btn {
+    white-space: nowrap;
+  }
 }
 .wpo-site-footer .upper-footer,
 .wpo-site-footer-s2 .upper-footer {
@@ -5049,6 +5188,32 @@ img {
 .wpo-project-area-s2 .wpo-project-wrap .wpo-project-item .wpo-project-text {
   padding-top: 30px;
 }
+/* category badge (client / personal), sits above the project title */
+.wpo-project-area .wpo-project-wrap .wpo-project-item .wpo-project-text .wpo-project-tag,
+.wpo-project-area-s2 .wpo-project-wrap .wpo-project-item .wpo-project-text .wpo-project-tag {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 3px 10px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 18px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.wpo-project-area .wpo-project-wrap .wpo-project-item .wpo-project-text .wpo-project-tag--client,
+.wpo-project-area-s2 .wpo-project-wrap .wpo-project-item .wpo-project-text .wpo-project-tag--client {
+  color: #59C378;
+  background: rgba(89, 195, 120, 0.12);
+  border-color: rgba(89, 195, 120, 0.35);
+}
+.wpo-project-area .wpo-project-wrap .wpo-project-item .wpo-project-text .wpo-project-tag--personal,
+.wpo-project-area-s2 .wpo-project-wrap .wpo-project-item .wpo-project-text .wpo-project-tag--personal {
+  color: #D8D8D8;
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.18);
+}
 .wpo-project-area .wpo-project-wrap .wpo-project-item .wpo-project-text h2,
 .wpo-project-area-s2 .wpo-project-wrap .wpo-project-item .wpo-project-text h2 {
   font-weight: 600;
@@ -5062,14 +5227,6 @@ img {
     line-height: 30px;
   }
 }
-.wpo-project-area .wpo-project-wrap .wpo-project-item .wpo-project-text h2 a,
-.wpo-project-area-s2 .wpo-project-wrap .wpo-project-item .wpo-project-text h2 a {
-  color: #fff;
-}
-.wpo-project-area .wpo-project-wrap .wpo-project-item .wpo-project-text h2 a:hover,
-.wpo-project-area-s2 .wpo-project-wrap .wpo-project-item .wpo-project-text h2 a:hover {
-  color: #59C378;
-}
 .wpo-project-area .wpo-project-wrap .wpo-project-item .wpo-project-text span,
 .wpo-project-area-s2 .wpo-project-wrap .wpo-project-item .wpo-project-text span {
   font-weight: 400;
@@ -5077,19 +5234,95 @@ img {
   line-height: 30px;
   color: #D8D8D8;
 }
+/* demo / repo buttons, one row under the description */
+.wpo-project-area .wpo-project-wrap .wpo-project-item .wpo-project-text .wpo-project-actions,
+.wpo-project-area-s2 .wpo-project-wrap .wpo-project-item .wpo-project-text .wpo-project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+.wpo-project-area .wpo-project-wrap .wpo-project-item .wpo-project-text .wpo-project-action,
+.wpo-project-area-s2 .wpo-project-wrap .wpo-project-item .wpo-project-text .wpo-project-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 6px;
+  background: transparent;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  letter-spacing: 0.02em;
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s, border-color 0.2s, background-color 0.2s;
+}
+.wpo-project-area .wpo-project-wrap .wpo-project-item .wpo-project-text .wpo-project-action i,
+.wpo-project-area-s2 .wpo-project-wrap .wpo-project-item .wpo-project-text .wpo-project-action i {
+  font-size: 13px;
+  line-height: 1;
+}
+.wpo-project-area .wpo-project-wrap .wpo-project-item .wpo-project-text .wpo-project-action span,
+.wpo-project-area-s2 .wpo-project-wrap .wpo-project-item .wpo-project-text .wpo-project-action span {
+  font-size: 12px;
+  line-height: 18px;
+  color: inherit;
+}
+/* demo = "go look at it", blue like a link / GitHub primary */
+.wpo-project-area .wpo-project-wrap .wpo-project-item .wpo-project-text .wpo-project-action--demo,
+.wpo-project-area-s2 .wpo-project-wrap .wpo-project-item .wpo-project-text .wpo-project-action--demo {
+  color: #58A6FF;
+  border-color: rgba(88, 166, 255, 0.45);
+  background: rgba(88, 166, 255, 0.1);
+}
+.wpo-project-area .wpo-project-wrap .wpo-project-item .wpo-project-text .wpo-project-action--demo:hover,
+.wpo-project-area-s2 .wpo-project-wrap .wpo-project-item .wpo-project-text .wpo-project-action--demo:hover,
+.wpo-project-area .wpo-project-wrap .wpo-project-item .wpo-project-text .wpo-project-action--demo:focus,
+.wpo-project-area-s2 .wpo-project-wrap .wpo-project-item .wpo-project-text .wpo-project-action--demo:focus {
+  color: #fff;
+  border-color: #58A6FF;
+  background: rgba(88, 166, 255, 0.24);
+}
+/* repo = code, so keep it quiet like GitHub's own secondary button
+   instead of competing with the demo */
+.wpo-project-area .wpo-project-wrap .wpo-project-item .wpo-project-text .wpo-project-action--repo,
+.wpo-project-area-s2 .wpo-project-wrap .wpo-project-item .wpo-project-text .wpo-project-action--repo {
+  color: #E6EDF3;
+  border-color: #30363D;
+  background: #21262D;
+}
+.wpo-project-area .wpo-project-wrap .wpo-project-item .wpo-project-text .wpo-project-action--repo:hover,
+.wpo-project-area-s2 .wpo-project-wrap .wpo-project-item .wpo-project-text .wpo-project-action--repo:hover,
+.wpo-project-area .wpo-project-wrap .wpo-project-item .wpo-project-text .wpo-project-action--repo:focus,
+.wpo-project-area-s2 .wpo-project-wrap .wpo-project-item .wpo-project-text .wpo-project-action--repo:focus {
+  color: #fff;
+  border-color: #8B949E;
+  background: #30363D;
+}
+.wpo-project-area .wpo-project-wrap .wpo-project-item .wpo-project-text .wpo-project-action.is-disabled,
+.wpo-project-area-s2 .wpo-project-wrap .wpo-project-item .wpo-project-text .wpo-project-action.is-disabled {
+  color: #D8D8D8;
+  border-color: rgba(255, 255, 255, 0.1);
+  background: transparent;
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.wpo-project-area .wpo-project-wrap .wpo-project-item .wpo-project-text .wpo-project-action.is-disabled:hover,
+.wpo-project-area-s2 .wpo-project-wrap .wpo-project-item .wpo-project-text .wpo-project-action.is-disabled:hover,
+.wpo-project-area .wpo-project-wrap .wpo-project-item .wpo-project-text .wpo-project-action.is-disabled:focus,
+.wpo-project-area-s2 .wpo-project-wrap .wpo-project-item .wpo-project-text .wpo-project-action.is-disabled:focus {
+  color: #D8D8D8;
+  border-color: rgba(255, 255, 255, 0.1);
+  background: transparent;
+}
 .wpo-project-area .wpo-project-wrap .wpo-project-item .wpo-project-img,
 .wpo-project-area-s2 .wpo-project-wrap .wpo-project-item .wpo-project-img {
   overflow: hidden;
   position: relative;
-}
-.wpo-project-area .wpo-project-wrap .wpo-project-item .wpo-project-img img,
-.wpo-project-area-s2 .wpo-project-wrap .wpo-project-item .wpo-project-img img {
-  transition: all 0.3s;
-  transform: scale(1);
-}
-.wpo-project-area .wpo-project-wrap .wpo-project-item:hover .wpo-project-img img,
-.wpo-project-area-s2 .wpo-project-wrap .wpo-project-item:hover .wpo-project-img img {
-  transform: scale(1.2);
 }
 .wpo-project-area .wpo-project-wrap .owl-nav button.owl-next,
 .wpo-project-area-s2 .wpo-project-wrap .owl-nav button.owl-next {
@@ -5158,6 +5391,25 @@ img {
 .wpo-project-area .wpo-project-wrap .owl-dots button.active,
 .wpo-project-area-s2 .wpo-project-wrap .owl-dots button.active {
   background: #59C378;
+}
+
+/* 3.5.1 uniform project thumbnails
+   Crops the preview to one frame so mixed image sizes look consistent.
+   PhotoSwipe is untouched and still shows each image at its natural ratio.
+   Rounded corners match the work-experience cards (8px). */
+.wpo-project-area .wpo-project-wrap .wpo-project-item .wpo-project-img {
+  overflow: hidden;
+  border-radius: 8px;
+}
+.wpo-project-area .wpo-project-wrap .wpo-project-item .wpo-project-img a {
+  display: block;
+}
+.wpo-project-area .wpo-project-wrap .wpo-project-item .wpo-project-img img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center;
 }
 
 /* 3.6 wpo-testimonial-section */
@@ -5929,6 +6181,12 @@ img {
 }
 .wpo-work-area-s2 .wpo-work-wrap .wpo-work-item ul li.position span span {
   margin-top: 0;
+}
+.wpo-work-area-s2 .wpo-work-wrap .wpo-work-item ul li.logo img {
+  transition: transform 0.3s ease;
+}
+.wpo-work-area-s2 .wpo-work-wrap .wpo-work-item:hover ul li.logo img {
+  transform: scale(1.1);
 }
 
 /* 5.4 partners-section  */
@@ -7932,4 +8190,14 @@ img {
 }
 .error-404-section .error-message p {
   margin-bottom: 1.8em;
-}/*# sourceMappingURL=style.css.map */
+}/*------------------------------------------------------------------
+15. agents.php (raw AGENTS.md view)
+----------------------------------------------------------------*/
+/* agents.php is intentionally UI-free: it prints AGENTS.md as plain text in
+   a terminal-style <pre>, so its only styling is inlined in the page itself.
+   The nav label below is the one rule that still belongs to the site chrome. */
+.wpo-site-header #navbar > ul > li > a.nav-agents-link {
+  text-transform: none;
+}
+
+/*# sourceMappingURL=style.css.map */

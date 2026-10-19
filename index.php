@@ -1,3 +1,58 @@
+<?php
+
+// im really lazy to do this, agents might rework the whole web app soon maybe.
+
+$projects = [
+    // Setiap entri punya dua slot tautan, keduanya boleh null:
+    //   'repo' -> URL repo GitHub (hanya ditampilkan untuk proyek 'personal')
+    //   'demo' -> URL demo langsung; kalau null tombolnya tampil nonaktif
+    //             dan menampilkan toast "belum tersedia" saat diklik.
+    [
+        'image'     => 'x1-billing.png',
+        'repo'      => null,
+        'demo'      => 'https://github.com/gensart-x',
+        // 'client' = permintaan klien, 'personal' = hasil coba/personal
+        'category'  => 'personal',
+        'title'     => 'RT/RW Net Billing App',
+        'subtitle'  => 'Aplikasi berbasis web untuk melakukan manajemen tagihan, infrastruktur, dsb. dalam sebuah usaha WiFi skala RT/RW net.'
+    ],
+    [
+        'image'     => 'kios-ropeg.png',
+        'repo'      => null,
+        'demo'      => null,
+        'category'  => 'client',
+        'title'     => 'Kios Pelayanan Kepegawaian ROPEG',
+        'subtitle'  => 'Aplikasi berbasis web untuk melayani pelayanan data kepegawaian secara digital di Kementerian Pertahanan RI'
+    ],
+    [
+        'image'     => null,
+        'repo'      => null,
+        'demo'      => null,
+        'category'  => 'client',
+        'title'     => 'Integrator SIASN x SIMPEG Kemhan',
+        'subtitle'  => 'Aplikasi berbasis web untuk memfasilitasi sinkronisasi data SIASN BKN dan SIMPEG di Kementerian Pertahanan RI'
+    ],
+];
+
+$workExperiences = [
+    [
+        'logo'      => '1.png',
+        'period'    => '2020 - 2022',
+        'position'  => 'Operator Sekolah',
+        'company'   => 'SMK Selagan Jaya',
+        'type'      => 'Full WFO'
+    ],
+    [
+        'logo'      => '2.jpg',
+        'period'    => '2022 - 2026',
+        'position'  => 'IT & Web Developer',
+        'company'   => 'Naafi Interkoneksi Indonesia',
+        'type'      => 'Hybrid'
+    ]
+];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <?php include './partials/head.php' ?>
@@ -128,36 +183,23 @@
                 </div>
                 <div class="wpo-work-wrap">
                     <div class="row">
-                        <div class="col-lg-4 col-md-6 col-12">
-                            <div class="wpo-work-item">
-                                <ul>
-                                    <li class="logo"><img src="assets/images/work/1.png" alt="naafi-logo" width="82"></li>
-                                    <li class="date">2020 - 2022</li>
-                                    <li class="position">
-                                        Operator Sekolah
-                                        <span>
-                                            SMK Selagan Jaya
-                                            <span>(Full WFO)</span>
-                                        </span>
-                                    </li>
-                                </ul>
+                        <?php foreach ($workExperiences as $experience): ?>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="wpo-work-item mb-3 mb-md-1">
+                                    <ul>
+                                        <li class="logo"><img src="assets/images/work/<?= $experience['logo'] ?>" alt="<?= $experience['company'] ?>-logo" width="82"></li>
+                                        <li class="date"><?= $experience['period'] ?></li>
+                                        <li class="position">
+                                            <?= $experience['position'] ?>
+                                            <span>
+                                                <?= $experience['company'] ?>
+                                                <span>(<?= $experience['type'] ?>)</span>
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-12">
-                            <div class="wpo-work-item">
-                                <ul>
-                                    <li class="logo"><img src="assets/images/work/2.jpg" alt="naafi-logo" width="82"></li>
-                                    <li class="date">2022 - 2026</li>
-                                    <li class="position">
-                                        IT & Web Developer
-                                        <span>
-                                            Naafi Interkoneksi Indonesia
-                                            <span>(Hybrid)</span>
-                                        </span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
@@ -198,16 +240,69 @@
                     </div>
                 </div>
                 <div class="wpo-project-wrap wpo-project-slide owl-carousel">
-                    <div class="wpo-project-item">
-                        <div class="wpo-project-img">
-                            <img src="assets/images/project/img-1.png" alt="">
+                    <?php foreach ($projects as $project): ?>
+                        <?php
+                        // PhotoSwipe sizes slides from these values; wrong numbers stretch the image.
+                        $imagePath = 'assets/images/project/' . ($project['image'] ?? 'privacy-notice.jpg');
+                        $imageSize = @getimagesize(__DIR__ . '/' . $imagePath);
+                        $pswpSize  = $imageSize ? 'data-pswp-width="' . $imageSize[0] . '" data-pswp-height="' . $imageSize[1] . '"' : '';
+
+                        // Anything that is not explicitly 'client' is treated as personal.
+                        $category      = ($project['category'] ?? '') === 'client' ? 'client' : 'personal';
+                        $categoryLabel = $category === 'client' ? 'Klien' : 'Personal';
+
+                        // Repo is only meaningful for our own projects; a client
+                        // build normally lives on their infrastructure, so the
+                        // button is left out entirely for client work.
+                        $showRepo = $category === 'personal';
+                        $repoUrl  = $showRepo ? ($project['repo'] ?? null) : null;
+                        $demoUrl  = $project['demo'] ?? null;
+
+                        /**
+                         * Builds one action button. A missing url renders the same
+                         * button non-clickable plus a data-project-no-link marker,
+                         * which notiflix-setup.js turns into a toast via delegation.
+                         */
+                        $projectAction = static function (string $kind, string $label, ?string $url) use ($project): string {
+                            $icon = $kind === 'repo' ? 'fa fa-github' : 'fa fa-external-link';
+
+                            if ($url) {
+                                return '<a class="wpo-project-action wpo-project-action--' . $kind . '"'
+                                    . ' href="' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') . '"'
+                                    . ' target="_blank" rel="noopener noreferrer">'
+                                    . '<i class="' . $icon . '" aria-hidden="true"></i>'
+                                    . '<span>' . $label . '</span>'
+                                    . '</a>';
+                            }
+
+                            return '<button type="button" class="wpo-project-action wpo-project-action--' . $kind . ' is-disabled"'
+                                . ' aria-disabled="true"'
+                                . ' data-project-no-link="' . $kind . '"'
+                                . ' data-project-name="' . htmlspecialchars($project['title'], ENT_QUOTES, 'UTF-8') . '">'
+                                . '<i class="' . $icon . '" aria-hidden="true"></i>'
+                                . '<span>' . $label . '</span>'
+                                . '</button>';
+                        };
+                        ?>
+                        <div class="wpo-project-item">
+                            <div class="wpo-project-img">
+                                <a href="<?= $imagePath ?>" <?= $pswpSize ?> target="_blank">
+                                    <img src="<?= $imagePath ?>" alt="project-image">
+                                </a>
+                            </div>
+                            <div class="wpo-project-text">
+                                <span class="wpo-project-tag wpo-project-tag--<?= $category ?>"><?= $categoryLabel ?></span>
+                                <h2><?= $project['title'] ?></h2>
+                                <span class="wpo-project-desc"><?= $project['subtitle'] ?></span>
+                                <div class="wpo-project-actions">
+                                    <?= $projectAction('demo', 'Demo', $demoUrl) ?>
+                                    <?php if ($showRepo): ?>
+                                        <?= $projectAction('repo', 'Repo GitHub', $repoUrl) ?>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
                         </div>
-                        <div class="wpo-project-text">
-                            <h2><a href="portfolio-single.php">Segera Hadir!</a></h2>
-                            <span>Dalam pengembangan</span>
-                        </div>
-                    </div>
-                    <!-- add project here -->
+                    <?php endforeach; ?>
                 </div>
             </div>
             <div class="shape-p">
@@ -241,6 +336,21 @@
     </div>
     <!-- end of page-wrapper -->
     <?php include './partials/script.php' ?>
+
+    <script>
+        $(function() {
+            const lightbox = new PhotoSwipeLightbox({
+                // each project image is its own single-slide gallery, so the
+                // viewer never navigates between projects
+                gallery: '.wpo-project-img',
+                // mouse wheel = zoom (Ctrl not required); when zoomed in,
+                // click-and-drag pans the image
+                wheelToZoom: true,
+                pswpModule: () => PhotoSwipe
+            });
+            lightbox.init();
+        });
+    </script>
 </body>
 
 </html>

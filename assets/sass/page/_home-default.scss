@@ -738,6 +738,34 @@
 		.wpo-project-item{
 	        .wpo-project-text{
 				padding-top: 30px;
+
+				/* category badge: sits above the title, inline-block so the
+				   padding actually hugs the label */
+				.wpo-project-tag{
+					display: inline-block;
+					margin-bottom: 10px;
+					padding: 3px 10px;
+					border-radius: 999px;
+					font-size: 11px;
+					font-weight: 600;
+					line-height: 18px;
+					letter-spacing: .04em;
+					text-transform: uppercase;
+					border: 1px solid transparent;
+
+					&--client{
+						color: $theme-primary-color;
+						background: rgba(89, 195, 120, .12);
+						border-color: rgba(89, 195, 120, .35);
+					}
+
+					&--personal{
+						color: $light;
+						background: rgba(255, 255, 255, .06);
+						border-color: rgba(255, 255, 255, .18);
+					}
+				}
+
 				h2{
 					font-weight: 600;
 					font-size: 25px;
@@ -747,14 +775,6 @@
 						font-size: 20px;
 						line-height: 30px;
 					}
-
-					a{
-						color: $white;
-
-						&:hover{
-							color: $theme-primary-color;
-						}
-					}
 				}
 
 				span{
@@ -763,23 +783,96 @@
 					line-height: 30px;
 					color: $light;
 				}
+
+				/* demo / repo buttons, one row under the description */
+				.wpo-project-actions{
+					display: flex;
+					flex-wrap: wrap;
+					gap: 10px;
+					margin-top: 18px;
+				}
+
+				.wpo-project-action{
+					display: inline-flex;
+					align-items: center;
+					gap: 6px;
+					padding: 7px 14px;
+					border: 1px solid rgba(255, 255, 255, .16);
+					border-radius: 6px;
+					background: transparent;
+					font-family: inherit;
+					font-size: 12px;
+					font-weight: 600;
+					line-height: 18px;
+					letter-spacing: .02em;
+					color: $white;
+					cursor: pointer;
+					text-decoration: none;
+					transition: color .2s, border-color .2s, background-color .2s;
+
+					i{
+						font-size: 13px;
+						line-height: 1;
+					}
+
+					/* the label span would otherwise pick up the 14px/30px
+					   description styling from `.wpo-project-text span` */
+					span{
+						font-size: 12px;
+						line-height: 18px;
+						color: inherit;
+					}
+
+					/* demo = "go look at it", blue like a link / GitHub primary */
+					&--demo{
+						color: #58A6FF;
+						border-color: rgba(88, 166, 255, .45);
+						background: rgba(88, 166, 255, .1);
+
+						&:hover,
+						&:focus{
+							color: #fff;
+							border-color: #58A6FF;
+							background: rgba(88, 166, 255, .24);
+						}
+					}
+
+					/* repo = code, so keep it quiet like GitHub's own
+					   secondary button instead of competing with the demo */
+					&--repo{
+						color: #E6EDF3;
+						border-color: #30363D;
+						background: #21262D;
+
+						&:hover,
+						&:focus{
+							color: #fff;
+							border-color: #8B949E;
+							background: #30363D;
+						}
+					}
+
+					/* no url yet: still focusable so the toast can explain why */
+					&.is-disabled{
+						color: $light;
+						border-color: rgba(255, 255, 255, .1);
+						background: transparent;
+						opacity: .45;
+						cursor: not-allowed;
+
+						&:hover,
+						&:focus{
+							color: $light;
+							border-color: rgba(255, 255, 255, .1);
+							background: transparent;
+						}
+					}
+				}
 			}
 
 			.wpo-project-img{
 				overflow: hidden;
 				position: relative;
-				img{
-					transition: all .3s;
-					transform: scale(1);
-				}
-			}
-
-			&:hover{
-				.wpo-project-img{
-					img{
-						transform: scale(1.2);
-					}
-				}
 			}
 		}
 
@@ -845,6 +938,29 @@
 		}
 	}
 
+}
+
+/* 3.5.1 uniform project thumbnails
+   Crops the preview to one frame so mixed image sizes look consistent.
+   PhotoSwipe is untouched and still shows each image at its natural ratio.
+   Rounded corners match the work-experience cards (8px). */
+.wpo-project-area{
+	.wpo-project-wrap .wpo-project-item .wpo-project-img{
+		overflow: hidden;
+		border-radius: 8px;
+
+		a{
+			display: block;
+		}
+
+		img{
+			display: block;
+			width: 100%;
+			aspect-ratio: 16 / 9;
+			object-fit: cover;
+			object-position: center;
+		}
+	}
 }
 
 /* 3.6 wpo-testimonial-section */

@@ -159,6 +159,16 @@
 				li.position span span{
 					margin-top: 0;
 				}
+
+				li.logo img{
+					transition: transform .3s ease;
+				}
+			}
+
+			&:hover{
+				ul li.logo img{
+					transform: scale(1.1);
+				}
 			}
 		}
 	}

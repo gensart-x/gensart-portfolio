@@ -1372,6 +1372,126 @@
   
 }
 
+/*-- header CV download button --*/
+
+.wpo-site-header .header-right .cv-download-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 8px 22px;
+	border-radius: 40px;
+	background-color: #41b362;
+	color: $white;
+	font-size: 14px;
+	line-height: 1.4;
+	white-space: nowrap;
+	transition: background-color .25s ease;
+
+	i {
+		font-size: 14px;
+		line-height: 1;
+	}
+
+	&:hover,
+	&:focus {
+		background-color: #359651;
+		color: $white;
+	}
+
+	&:focus-visible {
+		outline: 2px solid $white;
+		outline-offset: 2px;
+	}
+}
+
+@media (max-width: 991px) {
+	.wpo-site-header .header-right {
+		right: 0;
+	}
+
+	.wpo-site-header .header-right .cv-download-btn {
+		gap: 5px;
+		padding: 6px 12px;
+		font-size: 13px;
+
+		i {
+			font-size: 13px;
+		}
+	}
+}
+
+/*-- mobile header alignment --*/
+
+// The header row must span the container's content box symmetrically.
+// `.row { width: 100% }` combined with the negative gutter margins made the
+// row overflow to the right, leaving the three zones visibly off-centre.
+@media (max-width: 991px) {
+	.wpo-site-header .container > .row {
+		width: 100%;
+		margin-left: 0;
+		margin-right: 0;
+		flex-wrap: nowrap;
+	}
+
+	// Drop the column gutters so the outer zones can hug the container edges.
+	.wpo-site-header .header-menu-col,
+	.wpo-site-header .header-logo-col,
+	.wpo-site-header .header-nav-col,
+	.wpo-site-header .header-cv-col {
+		padding-left: 0;
+		padding-right: 0;
+		max-width: none;
+	}
+
+	// Menu and CV columns share the free space equally, which keeps the logo
+	// dead-centre regardless of how wide the CV button grows.
+	.wpo-site-header .header-menu-col {
+		flex: 1 1 0;
+		width: auto;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+	}
+
+	// The collapsed navbar is a fixed off-canvas drawer on mobile, so its
+	// column is a zero-width placeholder that takes no space in the row.
+	.wpo-site-header .header-nav-col {
+		flex: 0 0 0;
+		width: 0;
+	}
+
+	.wpo-site-header .header-logo-col {
+		flex: 0 0 auto;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.wpo-site-header .header-cv-col {
+		flex: 1 1 0;
+		width: auto;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+	}
+
+	// Cancel the brand's asymmetric spacer margins so the logo image itself
+	// is the centred element, not the padded box wrapped around it.
+	.wpo-site-header .header-logo-col .navbar-header {
+		width: auto;
+	}
+
+	.wpo-site-header .header-logo-col .navbar-brand {
+		margin: 0;
+		padding: 0;
+	}
+
+	.wpo-site-header .header-logo-col .navbar-brand img {
+		margin: 0;
+	}
+}
+
 // wpo-header-style-1
 
 .wpo-header-style-1,

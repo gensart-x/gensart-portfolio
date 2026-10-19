@@ -5,13 +5,13 @@
                 <div class="row align-items-center">
                     <div class="col col-lg-6">
                         <h3>
-                            Saya juga ikut serta sebagai jemaat Kristus yang ber-gerejakan di PPJ GBI KC ⛪.
+                            Saya juga ikut serta sebagai jemaat Kristus yang ber-gerejakan di BAJEM GBI KC ⛪.
                             <em>Let there always be light!</em>
                         </h3>
                     </div>
                     <div class="col col-lg-6">
                         <div class="send-message-btn">
-                            <a class="theme-btn" href="#" onclick="alert('Segera hadir!')">Website GBI KC</a>
+                            <a class="theme-btn" href="#" data-notiflix-coming-soon="BAJEM GBI KC">Website GBI KC</a>
                         </div>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                     <small>
                         <em>
                             Perubahan data terakhir:
-                            17-Oct-2026 1:52AM
+                            20-Oct-2026 4:08AM
                         </em>
                     </small>
                 </p>

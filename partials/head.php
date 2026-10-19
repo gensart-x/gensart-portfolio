@@ -4,11 +4,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Genesaret Johnes">
-    <meta name="description" content="Just a brief page of my portfolio">
+    <meta name="description" content="<?= isset($pageDesc) ? $pageDesc : 'Just a brief page of my portfolio' ?>">
     <!-- Page Title -->
     <link rel="shortcut icon" type="image/png" href="assets/images/preloader.png">
+    <!-- Machine-readable summary of this site, aimed at AI agents and crawlers -->
+    <link rel="alternate" type="text/markdown" href="AGENTS.md" title="AGENTS.md">
     <!-- Icon fonts -->
-    <title>Genesaret Johnes | Portfolio Web</title>
+    <title><?= isset($pageTitle) ? $pageTitle : 'Genesaret Johnes | Portfolio Web' ?></title>
     <link href="assets/css/themify-icons.css" rel="stylesheet">
     <link href="assets/css/font-awesome.min.css" rel="stylesheet">
     <link href="assets/css/flaticon.css" rel="stylesheet">
@@ -29,4 +31,13 @@
     <!-- Custom styles for this template -->
     <link href="assets/sass/style.css" rel="stylesheet">
     <?php echo (isset($css) ? $css   : '') ?>
+
+    <!-- image viewer -->
+    <link href="assets/css/image-viewer.css" rel="stylesheet">
+
+    <!-- PhotoSwipe -->
+    <link href="assets/vendor/photoswipe/photoswipe.css" rel="stylesheet">
+
+    <!-- Notiflix (exposes window.Notiflix: Notify / Report / Confirm / Loading / Block) -->
+    <link href="assets/vendor/notiflix/notiflix-all.min.css" rel="stylesheet">
 </head>
