@@ -9,6 +9,7 @@
     <link rel="shortcut icon" type="image/png" href="assets/images/preloader.png">
     <!-- Machine-readable summary of this site, aimed at AI agents and crawlers -->
     <link rel="alternate" type="text/markdown" href="AGENTS.md" title="AGENTS.md">
+    <link rel="alternate" type="text/plain" href="agents.php" title="AGENTS.php">
     <!-- Icon fonts -->
     <title><?= isset($pageTitle) ? $pageTitle : 'Genesaret Johnes | Portfolio Web' ?></title>
     <link href="assets/css/themify-icons.css" rel="stylesheet">
